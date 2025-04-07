@@ -32,8 +32,8 @@ Player::Player(sf::RenderWindow* window)
 
 
     m_collision.setSize(sf::Vector2f(m_sprite.getGlobalBounds().size.x * 0.33f, m_sprite.getGlobalBounds().size.y * 0.33f));
-
-    m_collision.setFillColor(sf::Color(255, 0, 0, 100));//////////////////////////////////////
+    
+    m_collision.setFillColor(sf::Color(255, 0, 0, 100));
 
     sf::Vector2f spritePos = m_sprite.getPosition();
     sf::Vector2f rectSize = m_collision.getSize();

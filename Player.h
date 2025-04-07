@@ -46,6 +46,8 @@ public:
 
     bool checkCollisionWithWalls(const sf::Vector2f& newPosition);
 
+    int getCurrentHP() { return m_currentHP; }
+
 private:
     void shoot(const sf::Vector2f& direction);
     void handleInput(float dt);

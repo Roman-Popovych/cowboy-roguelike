@@ -72,6 +72,9 @@ int main()
 
     while (window.isOpen())
     {
+        if (player.getCurrentHP() <= 0)
+            break;
+
         float dt = frameRateClock.restart().asSeconds();
         if (GameConfig::isDebug)
             printCameraPosition(window, player);
