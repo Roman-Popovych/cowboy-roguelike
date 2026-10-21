@@ -1,6 +1,6 @@
 # Cowboy Roguelike (working title)
 
-A top-down, room-based roguelike prototype written in C++17 with SFML, inspired by *The Binding of Isaac*. The player is a cowboy who moves between procedurally generated rooms, shoots and fights monsters.
+A top-down, room-based roguelike prototype written in C++20 with SFML, inspired by *The Binding of Isaac*. The player is a cowboy who moves between procedurally generated rooms, shoots and fights monsters.
 
 > **Status:** early prototype, a learning project. Not all planned features are implemented.
 
@@ -27,6 +27,7 @@ C++20, SFML 3.0.0, CMake (plus a Visual Studio solution, `game.sln`).
 | `Player.*`, `Monster.*`, `Bullet.h` | Game entities |
 | `Animation.h`, `Animator.h` | Sprite-sheet animations |
 | `Collider.*`, `DamageManager.h` | Collisions and damage |
+| `TextureLoader.h` | Loads textures, generates placeholders when a sprite is missing |
 | `docs/` | Notes on the architecture (in Ukrainian) and the demo video |
 
 ## Build and run
@@ -40,7 +41,7 @@ cmake -S . -B build
 cmake --build build --config Release
 ```
 
-Run `game` from the folder that contains `resources/` (the build also copies `resources/` next to the executable), because assets are loaded by relative path.
+Run `game` from the repository folder: assets are loaded by relative path (`resources/...`).
 
 ### Visual Studio
 
@@ -49,14 +50,24 @@ Run `game` from the folder that contains `resources/` (the build also copies `re
 3. Open `game.sln`, select the `x64` platform and build.
 4. Copy the SFML DLLs from `SFML-3.0.0\bin` next to the built `game.exe` (or add that folder to `PATH`).
 
+## Graphics
+
+The sprites are third-party assets whose licenses forbid redistribution, so they are **not included** in this repository. The game runs without them: every missing sprite is replaced by a generated coloured placeholder (the cowboy is a brown block, the slime is green), so you can build and play right after cloning.
+
+To get the original look, download the packs below and copy the files into a `resources/` folder in the repository root (it is ignored by git):
+
+| File in `resources/` | Pack |
+|---|---|
+| `Enemies/Monster/SlimeDefault/{Idle,Walk,Run,Attack}/Slime1_<Action>_full.png` | [Free Slime Mobs Pixel Art Top-Down Sprite Pack](https://free-game-assets.itch.io/free-slime-mobs-pixel-art-top-down-sprite-pack) (Craftpix) |
+| `PlayerCharacters/Cowboy/cowboy_idle_spritesheet.png`, `move/cowboy_walk_<dir>_spritesheet.png`, `attack/cowboy_attack_<dir>_spritesheet.png` | [Wild West Pixel Cowboy - Pixel Art Asset Pack](https://grayger26.itch.io/wild-west-pixel-cowboy-pixel-art-asset-pack) |
+| `WorldResources/Dungeon/Dungeon_Tileset.png`, `cornerWall.png` | [2D Pixel Dungeon Asset Pack](https://pixel-poem.itch.io/dungeon-assetpuck) |
+
+`<dir>` is `up`, `down`, `left` or `right`. Missing files are reported once in the console and replaced by placeholders.
+
 ## Known limitations
 
 - Shooting and the monster area attack are only partially implemented.
 
 ## Credits
 
-The sprites come from third-party free asset packs and keep their original licenses:
-
-- 2D Pixel Dungeon Asset Pack
-- Free Slime Mobs Pixel Art Top-Down Sprite Pack (Craftpix)
-- Wild West Pixel Cowboy - Pixel Art Asset Pack
+Sprites by third parties, used under their respective licenses (see the pack pages linked above): Pixel_Poem (2D Pixel Dungeon Asset Pack), Craftpix (Free Slime Mobs), grayger26 (Wild West Pixel Cowboy).
