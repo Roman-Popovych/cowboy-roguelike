@@ -1,4 +1,5 @@
 #include "Monster.h"
+#include "TextureLoader.h"
 #include <iostream>
 #include "GameConfig.h"
 #include <random>
@@ -52,12 +53,7 @@ SlimeDefault::SlimeDefault()
 	MonsterDamage.bodyDamage = bodyDamage;
 	MonsterDamage.damage = damage;
 
-	if (!m_texture.loadFromFile("resources/Enemies/Monster/SlimeDefault/Idle/Slime1_Idle_full.png")) {
-		if (GameConfig::isDebug)
-		{
-			std::cerr << "FAILED TO LOAD SLIME TEXTURE\n";
-		}
-	}
+	m_texture = loadTexture("resources/Enemies/Monster/SlimeDefault/Idle/Slime1_Idle_full.png", Placeholders::slimeIdle);
 
 	m_animator.addAnimation(AnimationType::None, Animation(&m_textures[CharacterState::Idle], 6, 0, 9999.f, 4));
 
@@ -248,8 +244,8 @@ bool SlimeDefault::isTargetReached() const
 
 void SlimeDefault::loadTextures()
 {
-	m_textures[CharacterState::None].loadFromFile("resources/Enemies/Monster/SlimeDefault/Idle/Slime1_Idle_full.png");
-	m_textures[CharacterState::Move].loadFromFile("resources/Enemies/Monster/SlimeDefault/Walk/Slime1_Walk_full.png");
-	m_textures[CharacterState::Dash].loadFromFile("resources/Enemies/Monster/SlimeDefault/Run/Slime1_Run_full.png");
-	m_textures[CharacterState::Attack].loadFromFile("resources/Enemies/Monster/SlimeDefault/Attack/Slime1_Attack_full.png");
+	m_textures[CharacterState::None] = loadTexture("resources/Enemies/Monster/SlimeDefault/Idle/Slime1_Idle_full.png", Placeholders::slimeIdle);
+	m_textures[CharacterState::Move] = loadTexture("resources/Enemies/Monster/SlimeDefault/Walk/Slime1_Walk_full.png", Placeholders::slimeWalk);
+	m_textures[CharacterState::Dash] = loadTexture("resources/Enemies/Monster/SlimeDefault/Run/Slime1_Run_full.png", Placeholders::slimeRun);
+	m_textures[CharacterState::Attack] = loadTexture("resources/Enemies/Monster/SlimeDefault/Attack/Slime1_Attack_full.png", Placeholders::slimeAttack);
 }

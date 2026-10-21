@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "TextureLoader.h"
 #include <iostream>
 #include "GameConfig.h"
 #include "Room.h"
@@ -7,7 +8,7 @@
 
 Player::Player(sf::RenderWindow* window)
     : m_window(window)
-    , m_texture("resources/PlayerCharacters/Cowboy/cowboy_idle_spritesheet.png")
+    , m_texture(loadTexture("resources/PlayerCharacters/Cowboy/cowboy_idle_spritesheet.png", Placeholders::cowboyIdle))
     , m_sprite(m_texture)
 {
     loadTextures();
@@ -328,16 +329,16 @@ void Player::shoot(const sf::Vector2f& direction) {
 
 void Player::loadTextures()
 {
-    m_textures[CharacterState::None].loadFromFile("resources/PlayerCharacters/Cowboy/cowboy_idle_spritesheet.png");
-    m_textures[CharacterState::Idle].loadFromFile("resources/PlayerCharacters/Cowboy/cowboy_idle_spritesheet.png");
+    m_textures[CharacterState::None] = loadTexture("resources/PlayerCharacters/Cowboy/cowboy_idle_spritesheet.png", Placeholders::cowboyIdle);
+    m_textures[CharacterState::Idle] = loadTexture("resources/PlayerCharacters/Cowboy/cowboy_idle_spritesheet.png", Placeholders::cowboyIdle);
 
-    m_textures[CharacterState::MoveUp].loadFromFile("resources/PlayerCharacters/Cowboy/move/cowboy_walk_up_spritesheet.png");
-    m_textures[CharacterState::MoveDown].loadFromFile("resources/PlayerCharacters/Cowboy/move/cowboy_walk_down_spritesheet.png");
-    m_textures[CharacterState::MoveLeft].loadFromFile("resources/PlayerCharacters/Cowboy/move/cowboy_walk_left_spritesheet.png");
-    m_textures[CharacterState::MoveRight].loadFromFile("resources/PlayerCharacters/Cowboy/move/cowboy_walk_right_spritesheet.png");
+    m_textures[CharacterState::MoveUp] = loadTexture("resources/PlayerCharacters/Cowboy/move/cowboy_walk_up_spritesheet.png", Placeholders::cowboyWalk);
+    m_textures[CharacterState::MoveDown] = loadTexture("resources/PlayerCharacters/Cowboy/move/cowboy_walk_down_spritesheet.png", Placeholders::cowboyWalk);
+    m_textures[CharacterState::MoveLeft] = loadTexture("resources/PlayerCharacters/Cowboy/move/cowboy_walk_left_spritesheet.png", Placeholders::cowboyWalk);
+    m_textures[CharacterState::MoveRight] = loadTexture("resources/PlayerCharacters/Cowboy/move/cowboy_walk_right_spritesheet.png", Placeholders::cowboyWalk);
 
-    m_textures[CharacterState::AttackUp].loadFromFile("resources/PlayerCharacters/Cowboy/attack/cowboy_attack_up_spritesheet.png");
-    m_textures[CharacterState::AttackDown].loadFromFile("resources/PlayerCharacters/Cowboy/attack/cowboy_attack_down_spritesheet.png");
-    m_textures[CharacterState::AttackLeft].loadFromFile("resources/PlayerCharacters/Cowboy/attack/cowboy_attack_left_spritesheet.png");
-    m_textures[CharacterState::AttackRight].loadFromFile("resources/PlayerCharacters/Cowboy/attack/cowboy_attack_right_spritesheet.png");
+    m_textures[CharacterState::AttackUp] = loadTexture("resources/PlayerCharacters/Cowboy/attack/cowboy_attack_up_spritesheet.png", Placeholders::cowboyAttack);
+    m_textures[CharacterState::AttackDown] = loadTexture("resources/PlayerCharacters/Cowboy/attack/cowboy_attack_down_spritesheet.png", Placeholders::cowboyAttack);
+    m_textures[CharacterState::AttackLeft] = loadTexture("resources/PlayerCharacters/Cowboy/attack/cowboy_attack_left_spritesheet.png", Placeholders::cowboyAttack);
+    m_textures[CharacterState::AttackRight] = loadTexture("resources/PlayerCharacters/Cowboy/attack/cowboy_attack_right_spritesheet.png", Placeholders::cowboyAttack);
 }

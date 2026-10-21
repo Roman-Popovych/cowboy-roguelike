@@ -162,6 +162,7 @@
     <ClInclude Include="PlayerPosition.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomGenerator.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

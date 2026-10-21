@@ -25,7 +25,12 @@ target_link_libraries(game PRIVATE SFML::Graphics)
 # Assets are loaded by relative path ("resources/..."), so run from the project folder
 set_target_properties(game PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-# SFML is linked statically (no DLLs needed); put the resources next to the executable
-add_custom_command(TARGET game POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-            ${CMAKE_CURRENT_SOURCE_DIR}/resources $<TARGET_FILE_DIR:game>/resources)
+# The sprite assets are third-party and not part of the repository (see README).
+# Without them the game uses generated placeholders. SFML is linked statically (no DLLs needed).
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/resources)
+    add_custom_command(TARGET game POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                ${CMAKE_CURRENT_SOURCE_DIR}/resources $<TARGET_FILE_DIR:game>/resources)
+else()
+    message(STATUS "resources/ not found: the game will use placeholder graphics (see README)")
+endif()

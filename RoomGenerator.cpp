@@ -1,4 +1,5 @@
 #include "RoomGenerator.h"
+#include "TextureLoader.h"
 #include <iostream>
 #include <memory>
 
@@ -7,22 +8,10 @@ RoomGenerator::RoomGenerator()
     : m_wallTexture(), m_floorTexture(), m_cornerTexture(), m_doorTexture(),
     m_wallSprite(m_wallTexture), m_floorSprite(m_floorTexture), m_cornerSprite(m_cornerTexture), m_doorSprite(m_doorTexture)
 {
-    if (!m_wallTexture.loadFromFile("resources/WorldResources/Dungeon/Dungeon_Tileset.png"))
-    {
-        throw std::runtime_error("Failed to load wall texture");
-    }
-    if (!m_floorTexture.loadFromFile("resources/WorldResources/Dungeon/Dungeon_Tileset.png"))
-    {
-        throw std::runtime_error("Failed to load floor texture");
-    }
-    if (!m_cornerTexture.loadFromFile("resources/WorldResources/Dungeon/cornerWall.png"))
-    {
-        throw std::runtime_error("Failed to load corner texture");
-    }
-    if (!m_doorTexture.loadFromFile("resources/WorldResources/Dungeon/Dungeon_Tileset.png"))
-    {
-        throw std::runtime_error("Failed to load corner texture");
-    }
+    m_wallTexture = loadTexture("resources/WorldResources/Dungeon/Dungeon_Tileset.png", Placeholders::tileset);
+    m_floorTexture = loadTexture("resources/WorldResources/Dungeon/Dungeon_Tileset.png", Placeholders::tileset);
+    m_cornerTexture = loadTexture("resources/WorldResources/Dungeon/cornerWall.png", Placeholders::corner);
+    m_doorTexture = loadTexture("resources/WorldResources/Dungeon/Dungeon_Tileset.png", Placeholders::tileset);
 
     m_wallSprite.setTexture(m_wallTexture);
     m_floorSprite.setTexture(m_floorTexture);
