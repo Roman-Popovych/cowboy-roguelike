@@ -16,7 +16,7 @@ A top-down, room-based roguelike prototype written in C++17 with SFML, inspired 
 
 ## Tech
 
-C++20, SFML 3.0.0, Visual Studio 2022 solution (`game.sln`).
+C++20, SFML 3.0.0, CMake (plus a Visual Studio solution, `game.sln`).
 
 ## Project layout
 
@@ -29,19 +29,29 @@ C++20, SFML 3.0.0, Visual Studio 2022 solution (`game.sln`).
 | `Collider.*`, `DamageManager.h` | Collisions and damage |
 | `docs/` | Notes on the architecture (in Ukrainian) and the demo video |
 
-## Build and run (Windows)
+## Build and run
 
-1. Install Visual Studio 2022 with the "Desktop development with C++" workload.
+### CMake (recommended)
+
+SFML 3 is downloaded and built automatically. Requires CMake 3.28+ and a C++20 compiler (tested with MSVC on Windows).
+
+```bash
+cmake -S . -B build
+cmake --build build --config Release
+```
+
+Run `game` from the folder that contains `resources/` (the build also copies `resources/` next to the executable), because assets are loaded by relative path.
+
+### Visual Studio
+
+1. Install Visual Studio with the "Desktop development with C++" workload.
 2. Download [SFML 3.0.0 for Visual C++ 17 (64-bit)](https://www.sfml-dev.org/download/sfml/3.0.0/) and unpack it to `C:\GameDev\Course\SFML-3.0.0-windows-vc17-64-bit\SFML-3.0.0`. This is the path stored in the project; to use another location, change the include and library directories in the project properties.
 3. Open `game.sln`, select the `x64` platform and build.
 4. Copy the SFML DLLs from `SFML-3.0.0\bin` next to the built `game.exe` (or add that folder to `PATH`).
-5. Run from Visual Studio, or from the folder that contains `resources/`, because assets are loaded by relative path.
 
 ## Known limitations
 
 - Shooting and the monster area attack are only partially implemented.
-- `CMakeLists.txt` is a leftover: it targets SFML 2.5 and builds only `game.cpp`. Use the Visual Studio solution.
-- Asset paths differ in letter case from the folder names on disk (for example `playerCharacters` vs `PlayerCharacters`). This works on Windows, but would break on case-sensitive systems.
 
 ## Credits
 
