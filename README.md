@@ -16,7 +16,7 @@ A top-down, room-based roguelike prototype written in C++17 with SFML, inspired 
 
 ## Tech
 
-C++17, SFML (graphics), CMake.
+C++20, SFML 3.0.0, Visual Studio 2022 solution (`game.sln`).
 
 ## Project layout
 
@@ -29,8 +29,24 @@ C++17, SFML (graphics), CMake.
 | `Collider.*`, `DamageManager.h` | Collisions and damage |
 | `docs/` | Notes on the architecture (in Ukrainian) and the demo video |
 
+## Build and run (Windows)
+
+1. Install Visual Studio 2022 with the "Desktop development with C++" workload.
+2. Download [SFML 3.0.0 for Visual C++ 17 (64-bit)](https://www.sfml-dev.org/download/sfml/3.0.0/) and unpack it to `C:\GameDev\Course\SFML-3.0.0-windows-vc17-64-bit\SFML-3.0.0`. This is the path stored in the project; to use another location, change the include and library directories in the project properties.
+3. Open `game.sln`, select the `x64` platform and build.
+4. Copy the SFML DLLs from `SFML-3.0.0\bin` next to the built `game.exe` (or add that folder to `PATH`).
+5. Run from Visual Studio, or from the folder that contains `resources/`, because assets are loaded by relative path.
+
 ## Known limitations
 
-- Sprite assets (`resources/`) are not included in this repository yet, so the game cannot be run from a fresh clone.
-- `CMakeLists.txt` is outdated: it targets SFML 2.5 and builds only `game.cpp`, so it needs to be updated for the SFML 3 API used in the code.
 - Shooting and the monster area attack are only partially implemented.
+- `CMakeLists.txt` is a leftover: it targets SFML 2.5 and builds only `game.cpp`. Use the Visual Studio solution.
+- Asset paths differ in letter case from the folder names on disk (for example `playerCharacters` vs `PlayerCharacters`). This works on Windows, but would break on case-sensitive systems.
+
+## Credits
+
+The sprites come from third-party free asset packs and keep their original licenses:
+
+- 2D Pixel Dungeon Asset Pack
+- Free Slime Mobs Pixel Art Top-Down Sprite Pack (Craftpix)
+- Wild West Pixel Cowboy - Pixel Art Asset Pack
