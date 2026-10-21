@@ -214,27 +214,10 @@ void SlimeDefault::moveTowardsTarget(float dt, float timeToTarget)
 		return;
 	}
 
-	//if (!m_isMovingToTarget) {
-	//	m_startPosition = m_sprite.getPosition();
-	//	m_elapsedTimeToTarget = 0.f;
-	//	m_totalTimeToTarget = timeToTarget;
-	//	m_isMovingToTarget = true;
-	//}
 
-	//m_elapsedTimeToTarget += dt;
-	//float progress = std::min(m_elapsedTimeToTarget / m_totalTimeToTarget, 1.f);
-
-	//sf::Vector2f newPosition = m_startPosition + (m_targetPosition - m_startPosition) * progress;
-	//m_sprite.setPosition(newPosition);
-
-	//if (progress >= 1.f) {
-	//	m_isMovingToTarget = false;
-	//}
-		// ќбчислимо дистанц≥ю до ц≥л≥
 	sf::Vector2f diff = m_targetPosition - m_sprite.getPosition();
 	float distanceToTarget = std::sqrt(diff.x * diff.x + diff.y * diff.y);
 
-	// якщо вже дуже близько до ц≥л≥ Ч не ≥н≥ц≥ал≥зувати рух
 	if (!m_isMovingToTarget && distanceToTarget > 1.f) {
 		m_startPosition = m_sprite.getPosition();
 		m_elapsedTimeToTarget = 0.f;
